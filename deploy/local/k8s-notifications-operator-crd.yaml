@@ -1,0 +1,50 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: k8snotifications.operators.vn.com
+spec:
+  group: operators.vn.com
+  names:
+    kind: K8sNotifications
+    plural: k8snotifications
+    shortNames:
+      - k8sn
+    singular: k8snotification
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                image:
+                  type: string
+                name:
+                  type: string
+                namespace:
+                  type: string
+                slackToken:
+                  type: string
+                slackChannelId:
+                  type: string
+                database:
+                  type: object
+                  properties:
+                    dbKind:
+                      type: string
+                    dbUrl:
+                      type: string
+                    dbUsername:
+                      type: string
+                    dbPassword:
+                      type: string
+            status:
+              type: object
+              properties:
+                readyReplicas:
+                  type: integer
+      served: true
+      storage: true

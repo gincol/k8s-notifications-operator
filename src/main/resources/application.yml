@@ -1,0 +1,4 @@
+pod:
+  namespace: openshift-operators
+  service-account: k8sn-notifications-operator
+  image-pull-secrets: regcred

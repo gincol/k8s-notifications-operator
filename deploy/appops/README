@@ -1,0 +1,10 @@
+## Despliegue operador
+
+docker login -u user https://quay.io/
+cd .docker
+oc create secret generic regcred -n openshift-operators --from-file .dockerconfigjson=config.json --type kubernetes.io/dockerconfigjson
+
+oc apply -f cluster-rolebinding.yaml
+oc apply -f k8s-notifications-operator-crd.yaml
+oc apply -f deployment.yaml
+
